@@ -2,7 +2,8 @@ import { Observable, tap } from 'rxjs';
 import { ProductsService } from './services/products.service';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './models/product';
-import { products as data} from './data/products';
+import { products as data, products} from './data/products';
+import { ModalService } from './services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -28,19 +29,6 @@ import { products as data} from './data/products';
 // }
 
 // С использованием "Стримов"
-export class AppComponent implements OnInit {
-  title = 'angular app'
-  loading = false
-  products$: Observable<IProduct[]>
-  term = ""
-
-  constructor(private productsService: ProductsService){
-  }
-
-  ngOnInit(): void {
-    this.loading = true
-    this.products$ = this.productsService.getAll().pipe(
-      tap(()=>this.loading=false)
-      )
-  }
+export class AppComponent {
+  
 }
