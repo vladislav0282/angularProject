@@ -1,0 +1,8 @@
+<div class="container">
+    <h5>{{todosPage}}</h5>
+    <app-todo 
+        [todos]="todos"
+        (onToggle)="onToggle($event)"
+    
+    ></app-todo>
+</div>
