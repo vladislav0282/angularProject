@@ -1,11 +1,31 @@
 <p>{{todoTitle}}</p>
-<ul>
-    <li *ngFor="let todo of todos; let i=index">
+
+<!-- Создаем свой собственный пайп todosFilter:searchString и потом его используем для поиска -->
+<div class="filter">
+    <input 
+    type="text"
+    placeholder="Filter todo by tytle..."
+    [(ngModel)]="searchString"
+    >
+</div>
+
+
+<div *ngIf="!loading">
+    <!-- *ngIf - деректива которая выводит разметку если выполняется условие -->
+<ul *ngIf="todosService.todos.length; else noTodos"> 
+    <li *ngFor="let todo of todosService.todos | todosFilter:searchString; let i=index">
         <span [class.done]="todo.completed">
             <input type="checkbox" [checked]="todo.completed" (change)="onChange(todo.id)">
             <strong>{{i+1}}</strong>{{todo.title}}
         </span>
         <small>{{todo.date | date:'medium'}}</small>
-        <button class="rm">&times;</button>
+        <button class="rm" (click)="removeTodo(todo.id)">x</button>
     </li>
 </ul>
+
+<!-- ng-templat - тег который выводится в месте где есть селектор noTodo -->
+<ng-template #noTodos>
+    <p style="text-align: center">No todos now!</p>
+</ng-template>
+</div>
+<p *ngIf="loading">Loading...</p>

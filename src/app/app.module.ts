@@ -16,6 +16,8 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { TodosPageComponent } from './pages/todos-page/todos-page.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { TodoFormComponent } from './components/todo-form/todo-form.component';
+import { TodosFilterPipe } from './shared/todos-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,14 @@ import { TodoComponent } from './components/todo/todo.component';
     NavigationComponent,
     TodosPageComponent,
     TodoComponent,
+    TodoFormComponent,
+    TodosFilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule, //для того чтобы байндить формы (для работы с формами)
     ReactiveFormsModule
   ],
   providers: [],
